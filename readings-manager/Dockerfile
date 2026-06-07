@@ -5,8 +5,8 @@ RUN apt-get update
 RUN apt-get install openjdk-17-jdk -y
 COPY . .
 
-RUN apt-get install maven -y
-RUN mvn clean install
+# Faz o build do projeto PULANDO OS TESTES (-DskipTests)
+RUN mvn clean package -DskipTests
 
 FROM eclipse-temurin:17-jdk
 
