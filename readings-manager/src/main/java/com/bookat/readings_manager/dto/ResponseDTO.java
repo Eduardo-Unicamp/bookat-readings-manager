@@ -1,4 +1,4 @@
-package dto;
+package com.bookat.readings_manager.dto;
 
 import com.bookat.readings_manager.entity.Reading;
 import lombok.Data;

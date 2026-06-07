@@ -1,5 +1,6 @@
 package com.bookat.readings_manager.entity;
 
+import com.bookat.readings_manager.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,4 +18,5 @@ public class User{
     private String name;
     private String email;
     private String password;
+    private UserRole role;
 }

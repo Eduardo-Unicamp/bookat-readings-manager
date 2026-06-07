@@ -1,12 +1,10 @@
 package com.bookat.readings_manager.controller;
-
-import com.bookat.readings_manager.enums.ReadingStatus;
+import com.bookat.readings_manager.infra.security.UserDetailsImpl;
 import com.bookat.readings_manager.services.ReadingService;
-import dto.RequestDTO;
-import dto.ResponseDTO;
+import com.bookat.readings_manager.dto.RequestDTO;
+import com.bookat.readings_manager.dto.ResponseDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -27,8 +25,8 @@ public class ReadingController {
     }
 
     @PostMapping()
-    public ResponseEntity<Void> postTask(@RequestBody RequestDTO requestDTO){
-        readingService.addReading(requestDTO);
+    public ResponseEntity<Void> postTask(@RequestBody RequestDTO requestDTO,@AuthenticationPrincipal UserDetailsImpl loggedUser){
+        readingService.addReading(requestDTO,loggedUser);
         return ResponseEntity.status(201).build();
     }
 
@@ -41,9 +39,11 @@ public class ReadingController {
     @PutMapping("/{readingId}")
     public ResponseEntity<Void> updateReadings(
             @PathVariable UUID readingId,
-            @RequestBody RequestDTO requestDTO)
+            @RequestBody RequestDTO requestDTO,
+            @AuthenticationPrincipal UserDetailsImpl loggedUser
+    )
     {
-        readingService.updateReading(readingId,requestDTO);
+        readingService.updateReading(readingId,requestDTO,loggedUser);
         return ResponseEntity.ok().build();
     }
 

@@ -1,10 +1,12 @@
-package dto;
+package com.bookat.readings_manager.dto;
 
 import com.bookat.readings_manager.entity.Book;
 import com.bookat.readings_manager.entity.Group;
 import com.bookat.readings_manager.entity.User;
 import com.bookat.readings_manager.enums.ReadingStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -13,18 +15,17 @@ import java.util.UUID;
 public class RequestDTO {
 
     private Integer currentPage;
-
+    @NotNull
     private ReadingStatus readingStatus;
-
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate readingStartDate;
-
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate readingFinishDate;
 
     private String feedback;
 
-    private UUID userId;
-
+    @NotNull
     private UUID groupId;
-
+    @NotNull
     private UUID bookId;
 }
