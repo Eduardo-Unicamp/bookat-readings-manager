@@ -29,6 +29,7 @@ public class ReadingMapper {
         newReading.setReadingStatus(requestDTO.getReadingStatus());
         newReading.setReadingStartDate(requestDTO.getReadingStartDate());
         newReading.setReadingFinishDate(requestDTO.getReadingFinishDate());
+        newReading.setFeedback(requestDTO.getFeedback());
         newReading.setBook(bookRepository.findById(requestDTO.getBookId()).orElseThrow(BookNotFoundException::new));
         newReading.setGroup(groupRepository.findById(requestDTO.getGroupId()).orElseThrow(GroupNotFoundException::new));
        newReading.setUser(userRepository.findById(loggedUser.getUser().getUserId()).orElseThrow(UserNotFoundException::new));
